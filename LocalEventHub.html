@@ -4,423 +4,290 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>LocalEventHub</title>
+
 <style>
-:root {
-  --primary: #00bfa5;
-  --bg-start: #f4f4f9;
-  --bg-end: #e0f7f5;
-  --card: #ffffff;
-  --text: #333;
-}
-
-/* Body & Background */
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(to bottom, var(--bg-start), var(--bg-end));
-  color: var(--text);
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f2f2f2;
 }
 
-/* Header */
 header {
-  background: linear-gradient(90deg, #00bfa5, #00e0c0);
-  color: #fff;
-  padding: 16px 24px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    background: #009688;
+    padding: 15px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-header > div {
-  display: flex;
-  align-items: center;
-  font-size: 22px;
-  font-weight: bold;
-}
-
-/* Nav */
 header nav a {
-  color: #fff;
-  margin-left: 16px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: color 0.3s;
-}
-header nav a:hover {
-  color: #ffd700;
+    color: white;
+    margin-left: 12px;
+    text-decoration: none;
 }
 
-/* Main content */
 main {
-  max-width: 1000px;
-  margin: 20px auto;
-  padding: 0 16px;
+    max-width: 900px;
+    margin: auto;
+    padding: 15px;
 }
+
 .hidden {
-  display: none;
+    display: none;
 }
 
-/* Cards */
 .card {
-  background: var(--card);
-  padding: 20px;
-  border-radius: 16px;
-  margin-bottom: 20px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 28px rgba(0,0,0,0.18);
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
 }
 
-/* Inputs */
 input, select, textarea {
-  padding: 10px;
-  width: 100%;
-  margin: 6px 0 14px 0;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  transition: box-shadow 0.3s, border 0.3s;
-}
-input:focus, select:focus, textarea:focus {
-  outline: none;
-  border: 2px solid var(--primary);
-  box-shadow: 0 4px 12px rgba(0,191,165,0.25);
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #aaa;
+    border-radius: 5px;
 }
 
-/* Error text */
-.error {
-  color: red;
-  font-size: 14px;
-  margin-top: -10px;
-  margin-bottom: 10px;
-}
-
-/* Buttons */
 button {
-  padding: 12px 20px;
-  border-radius: 12px;
-  background: linear-gradient(45deg, #00bfa5, #00e0c0);
-  color: #fff;
-  font-weight: bold;
-  cursor: pointer;
-  border: none;
-  transition: all 0.3s;
-}
-button:hover {
-  background: linear-gradient(45deg, #00e0c0, #00bfa5);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    background: #009688;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-/* Event title */
-.event-title {
-  margin-top: 60px;
-  font-size: 36px;
-  font-weight: 900;
-  text-align: center;
-  color: #00796b;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-}
-
-/* Grid */
 .grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 20px;
-  margin-top: 20px;
-}
-@media(max-width:600px){
-  .grid { grid-template-columns: 1fr; }
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 15px;
 }
 
-/* Circle image */
 .circle-img {
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 4px solid var(--primary);
-  margin-bottom: 16px;
-  display: inline-block;
-}
-
-/* About text */
-.about-text {
-  font-size: 18px;
-  line-height: 1.6;
-  margin-top: 12px;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #009688;
 }
 </style>
 </head>
 <body>
 
 <header>
-  <div>LocalEventHub</div>
-  <nav>
-    <a href="#" onclick="showPage('home')">Home</a>
-    <a href="#" onclick="showPage('about')">About Us</a>
-    <a href="#" onclick="showPage('addEvent')">Add Event</a>
-    <a href="#" onclick="showPage('contact')">Contact</a>
-    <a href="#" onclick="showPage('login')">Login</a>
-    <a href="#" onclick="showPage('register')">Register</a>
-  </nav>
+    <div>LocalEventHub</div>
+    <nav>
+        <a href="#" onclick="showPage('home')">Home</a>
+        <a href="#" onclick="showPage('about')">About</a>
+        <a href="#" onclick="showPage('addEvent')">Add Event</a>
+        <a href="#" onclick="showPage('contact')">Contact</a>
+        <a href="#" onclick="showPage('login')">Login</a>
+        <a href="#" onclick="showPage('register')">Register</a>
+    </nav>
 </header>
 
 <main>
-  <!-- Home Page -->
-  <section id="homePage">
-    <div style="text-align:center; margin-top:20px;">
-      <img src="foto.png" alt="LocalEventHub" class="circle-img">
+
+<!-- HOME -->
+<section id="homePage">
+    <div style="text-align:center; margin-top:10px;">
+        <img src="foto.png" class="circle-img">
     </div>
-    <h1 class="event-title">Eventet Lokale</h1>
-    <input type="text" id="searchInput" placeholder="Kërko eventet...">
+
+    <h2 style="text-align:center;">Eventet Lokale</h2>
+
+    <input type="text" id="searchInput" placeholder="Kërko event...">
     <select id="categoryFilter">
-      <option value="all">Të gjitha kategoritë</option>
-      <option value="music">Music</option>
-      <option value="workshop">Workshop</option>
-      <option value="sport">Sport</option>
-      <option value="festival">Festival</option>
-      <option value="meeting">Meeting</option>
-      <option value="party">Local Party</option>
-      <option value="special">Special Event</option>
-    </select>
-    <div class="grid" id="eventGrid"></div>
-  </section>
-
-  <!-- About Us -->
-  <section id="aboutPage" class="hidden">
-    <h1 style="text-align:center; color:#00796b;">Rreth LocalEventHub</h1>
-    <div style="text-align:center; margin:20px 0;">
-      <img src="foto.png" alt="LocalEventHub" class="circle-img" style="width:200px; height:200px; border:5px solid #00bfa5;">
-    </div>
-    <div class="card about-text">
-      LocalEventHub është një platformë e dedikuar për komunitetin tuaj. 
-      Këtu mund të zbuloni dhe shtoni evente lokale — nga koncerte e punëtori kreative, 
-      tek aktivitete sportive, takime studentore dhe evente humanitare.
-    </div>
-  </section>
-
-  <!-- Add Event -->
-  <section id="addEventPage" class="hidden">
-    <h1>Shto Event</h1>
-
-    <form id="addEventForm">
-      <div id="addEventError" class="error"></div>
-
-      <input type="text" id="eventName" placeholder="Emri i eventit">
-      <input type="date" id="eventDate">
-      <select id="eventCategory">
-        <option value="">Zgjidh kategorinë</option>
+        <option value="all">Të gjitha</option>
         <option value="music">Music</option>
         <option value="workshop">Workshop</option>
         <option value="sport">Sport</option>
         <option value="festival">Festival</option>
         <option value="meeting">Meeting</option>
-        <option value="party">Local Party</option>
-        <option value="special">Special Event</option>
-      </select>
-      <textarea id="eventDesc" placeholder="Përshkrimi i eventit"></textarea>
-      <input type="url" id="eventLink" placeholder="Link i faqes së eventit">
+        <option value="party">Party</option>
+        <option value="special">Special</option>
+    </select>
 
-      <button type="submit">Shto Event</button>
+    <div id="eventGrid" class="grid"></div>
+</section>
+
+<!-- ABOUT -->
+<section id="aboutPage" class="hidden">
+    <h2 style="text-align:center;">Rreth LocalEventHub</h2>
+
+    <div style="text-align:center;">
+        <img src="foto.png" class="circle-img">
+    </div>
+
+    <div class="card">
+        LocalEventHub është një faqe e thjeshtë ku përdoruesit
+        mund të shikojnë ose të shtojnë evente lokale në komunitet.
+    </div>
+</section>
+
+<!-- ADD EVENT -->
+<section id="addEventPage" class="hidden">
+    <h2>Shto Event</h2>
+
+    <form id="addEventForm">
+        <input type="text" id="eventName" placeholder="Emri i eventit" required>
+        <input type="date" id="eventDate" required>
+        <select id="eventCategory" required>
+            <option value="">Zgjidh kategorinë</option>
+            <option value="music">Music</option>
+            <option value="workshop">Workshop</option>
+            <option value="sport">Sport</option>
+            <option value="festival">Festival</option>
+            <option value="meeting">Meeting</option>
+            <option value="party">Party</option>
+            <option value="special">Special Event</option>
+        </select>
+        <textarea id="eventDesc" placeholder="Përshkrimi" required></textarea>
+        <input type="url" id="eventLink" placeholder="Link i eventit" required>
+        <button type="submit">Shto</button>
     </form>
-  </section>
+</section>
 
-  <!-- Contact Page -->
-  <section id="contactPage" class="hidden">
-    <h1>Na Kontaktoni</h1>
+<!-- CONTACT -->
+<section id="contactPage" class="hidden">
+    <h2>Contact Us</h2>
     <form id="contactForm">
-      <div id="contactError" class="error"></div>
-
-      <input type="text" id="contactName" placeholder="Emri juaj">
-      <input type="email" id="contactEmail" placeholder="Email">
-      <textarea id="contactMsg" placeholder="Mesazhi juaj"></textarea>
-
-      <button type="submit">Dërgo</button>
+        <input type="text" id="contactName" placeholder="Emri juaj" required>
+        <input type="email" id="contactEmail" placeholder="Email" required>
+        <textarea id="contactMessage" placeholder="Mesazhi juaj" required></textarea>
+        <button type="submit">Dërgo</button>
     </form>
-  </section>
+</section>
 
-  <!-- Login -->
-  <section id="loginPage" class="hidden">
-    <h1>Login</h1>
+<!-- LOGIN -->
+<section id="loginPage" class="hidden">
+    <h2>Login</h2>
     <form id="loginForm">
-      <div id="loginError" class="error"></div>
-
-      <input type="text" id="loginUser" placeholder="Username">
-      <input type="password" id="loginPass" placeholder="Password">
-
-      <button type="submit">Login</button>
+        <input type="text" id="loginUser" placeholder="Username" required>
+        <input type="password" id="loginPass" placeholder="Password" required>
+        <button type="submit">Kyqu</button>
     </form>
-  </section>
+</section>
 
-  <!-- Register -->
-  <section id="registerPage" class="hidden">
-    <h1>Register</h1>
+<!-- REGISTER -->
+<section id="registerPage" class="hidden">
+    <h2>Register</h2>
     <form id="registerForm">
-      <div id="regError" class="error"></div>
-
-      <input type="text" id="regUser" placeholder="Username">
-      <input type="email" id="regEmail" placeholder="Email">
-      <input type="password" id="regPass" placeholder="Password">
-
-      <button type="submit">Register</button>
+        <input type="text" id="regUser" placeholder="Username" required>
+        <input type="email" id="regEmail" placeholder="Email" required>
+        <input type="password" id="regPass" placeholder="Password" required>
+        <button type="submit">Krijo</button>
     </form>
-  </section>
+</section>
+
 </main>
 
 <script>
+// PAGE SWITCHING
 const pages = {
-  home: document.getElementById('homePage'),
-  about: document.getElementById('aboutPage'),
-  addEvent: document.getElementById('addEventPage'),
-  contact: document.getElementById('contactPage'),
-  login: document.getElementById('loginPage'),
-  register: document.getElementById('registerPage')
+    home: document.getElementById("homePage"),
+    about: document.getElementById("aboutPage"),
+    addEvent: document.getElementById("addEventPage"),
+    contact: document.getElementById("contactPage"),
+    login: document.getElementById("loginPage"),
+    register: document.getElementById("registerPage")
 };
 
-function showPage(page){
-  for(let key in pages){ pages[key].classList.add('hidden'); }
-  pages[page].classList.remove('hidden');
+function showPage(p) {
+    for (let x in pages) pages[x].classList.add("hidden");
+    pages[p].classList.remove("hidden");
 }
 
-// Eventet demo
+// EVENTET E DEMOS
 let events = [
-  {name:"Concert Live", date:"2025-11-20", category:"music", desc:"Koncert i mrekullueshëm në qytetin tuaj.", link:"https://sunnyhillfestival.com"},
-  {name:"Yoga Workshop", date:"2025-11-18", category:"sport", desc:"Punëtori Yoga për fillestarë.", link:"https://exampleyoga.com"},
-  {name:"Painting Workshop", date:"2025-11-25", category:"workshop", desc:"Mëso pikturë nga artist lokal.", link:"https://localartstudio.com"},
-  {name:"Autumn Festival", date:"2025-11-22", category:"festival", desc:"Festivali i vjeshtës me muzikë dhe ushqim.", link:"https://sunnyhillfestival.com"},
-  {name:"UBT Meetup", date:"2025-11-21", category:"meeting", desc:"Takim studentor në UBT për projekte të reja.", link:"https://www.ubt-uni.net"},
-  {name:"Local Party Night", date:"2025-11-23", category:"party", desc:"Natë feste me DJ lokal.", link:"https://instagram.com/zoneclubpr"},
-  {name:"Charity Special", date:"2025-11-26", category:"special", desc:"Event humanitar.", link:"https://localcharity.org"}
+    {name:"Concert Live", date:"2025-11-20", category:"music", desc:"Koncert në qytet.", link:"https://sunnyhillfestival.com"},
+    {name:"Yoga Workshop", date:"2025-11-18", category:"sport", desc:"Punëtori Yoga.", link:"https://example.com"},
+    {name:"UBT Meetup", date:"2025-11-21", category:"meeting", desc:"Takim në UBT.", link:"https://ubt-uni.net"}
 ];
 
-function renderEvents(list){
-  const grid = document.getElementById('eventGrid');
-  grid.innerHTML = '';
-  list.forEach(ev=>{
-    const div = document.createElement('div');
-    div.className='card';
-    div.innerHTML=`
-      <h3>${ev.name}</h3>
-      <small>${ev.date} | ${ev.category}</small>
-      <p>${ev.desc}</p>
-      <a href="${ev.link}" target="_blank"><button>Shko tek faqja</button></a>
-    `;
-    grid.appendChild(div);
-  });
+function renderEvents(list) {
+    const grid = document.getElementById("eventGrid");
+    grid.innerHTML = "";
+    list.forEach(ev => {
+        let div = document.createElement("div");
+        div.className = "card";
+        div.innerHTML = `
+            <h3>${ev.name}</h3>
+            <small>${ev.date} | ${ev.category}</small>
+            <p>${ev.desc}</p>
+            <a href="${ev.link}" target="_blank"><button>Shko</button></a>
+        `;
+        grid.appendChild(div);
+    });
 }
 renderEvents(events);
 
-// Search + filter
-document.getElementById('searchInput').addEventListener('input', ()=>{
-  const q = document.getElementById('searchInput').value.toLowerCase();
-  const cat = document.getElementById('categoryFilter').value;
-  const filtered = events.filter(ev=>{
-    return (ev.name.toLowerCase().includes(q) || ev.desc.toLowerCase().includes(q))
-           && (cat=='all' || ev.category==cat);
-  });
-  renderEvents(filtered);
-});
-document.getElementById('categoryFilter').addEventListener('change', ()=>{
-  document.getElementById('searchInput').dispatchEvent(new Event('input'));
-});
+// SEARCH + FILTER
+document.getElementById("searchInput").addEventListener("input", filter);
+document.getElementById("categoryFilter").addEventListener("change", filter);
 
-/* ----------------------- */
-/* VALIDIME */
-/* ----------------------- */
+function filter() {
+    let q = searchInput.value.toLowerCase();
+    let cat = categoryFilter.value;
 
-// Add Event Validim
-document.getElementById('addEventForm').addEventListener('submit', e=>{
-  e.preventDefault();
-  let err = "";
+    let filtered = events.filter(e =>
+        (e.name.toLowerCase().includes(q) || e.desc.toLowerCase().includes(q)) &&
+        (cat === "all" || e.category === cat)
+    );
 
-  const name = eventName.value.trim();
-  const date = eventDate.value;
-  const cat = eventCategory.value;
-  const desc = eventDesc.value.trim();
-  const link = eventLink.value.trim();
+    renderEvents(filtered);
+}
 
-  if(name.length < 3) err = "Emri i eventit duhet të ketë 3+ karaktere";
-  else if(!date) err = "Duhet të zgjedhësh një datë";
-  else if(cat == "") err = "Zgjidh kategorinë";
-  else if(desc.length < 10) err = "Përshkrimi duhet të ketë 10+ karaktere";
-  else if(!link.startsWith("http")) err = "Linku duhet të fillojë me http";
-
-  if(err){
-    addEventError.textContent = err;
-    return;
-  }
-
-  addEventError.textContent = "";
-  events.push({name,date,category:cat,desc,link});
-  alert("Eventi u shtua!");
-  renderEvents(events);
-  e.target.reset();
-  showPage('home');
+// ADD EVENT
+document.getElementById("addEventForm").addEventListener("submit", e => {
+    e.preventDefault();
+    events.push({
+        name: eventName.value,
+        date: eventDate.value,
+        category: eventCategory.value,
+        desc: eventDesc.value,
+        link: eventLink.value
+    });
+    alert("Eventi u shtua!");
+    renderEvents(events);
+    showPage("home");
 });
 
-// Contact Validim
-document.getElementById('contactForm').addEventListener('submit', e=>{
-  e.preventDefault();
-  let err = "";
-
-  const name = contactName.value.trim();
-  const email = contactEmail.value.trim();
-  const msg = contactMsg.value.trim();
-
-  if(name.length < 3) err = "Emri duhet të ketë 3+ karaktere";
-  else if(!email.includes("@") || !email.includes(".")) err = "Email i pavlefshëm";
-  else if(msg.length < 10) err = "Mesazhi duhet të ketë 10+ karaktere";
-
-  if(err){
-    contactError.textContent = err;
-    return;
-  }
-
-  contactError.textContent = "";
-  alert("Mesazhi u dërgua me sukses!");
-  e.target.reset();
+// LOGIN
+document.getElementById("loginForm").addEventListener("submit", e => {
+    e.preventDefault();
+    alert("Login i suksesshëm!");
 });
 
-// Login Validim
-document.getElementById('loginForm').addEventListener('submit', e=>{
-  e.preventDefault();
-  let err = "";
-
-  if(loginUser.value.trim().length < 3) err = "Username duhet të ketë 3+ karaktere";
-  else if(loginPass.value.length < 4) err = "Password duhet të ketë 4+ karaktere";
-
-  if(err){
-    loginError.textContent = err;
-    return;
-  }
-
-  loginError.textContent = "";
-  alert(`Welcome back, ${loginUser.value}!`);
+// REGISTER
+document.getElementById("registerForm").addEventListener("submit", e => {
+    e.preventDefault();
+    alert("Llogaria u krijua!");
 });
 
-// Register Validim
-document.getElementById('registerForm').addEventListener('submit', e=>{
-  e.preventDefault();
-  let err = "";
+// CONTACT FORM
+document.getElementById("contactForm").addEventListener("submit", e => {
+    e.preventDefault();
+    const name = contactName.value.trim();
+    const email = contactEmail.value.trim();
+    const msg = contactMessage.value.trim();
 
-  if(regUser.value.trim().length < 3) err = "Username duhet të ketë 3+ karaktere";
-  else if(!regEmail.value.includes("@")) err = "Email jo valid";
-  else if(regPass.value.length < 5) err = "Password duhet të ketë 5+ karaktere";
-
-  if(err){
-    regError.textContent = err;
-    return;
-  }
-
-  regError.textContent = "";
-  alert(`Account created for ${regUser.value}`);
+    if(name.length < 2 || !email.includes("@") || msg.length < 5){
+        alert("Ju lutem plotësoni të gjitha fushat saktë!");
+        return;
+    }
+    alert(`Mesazhi u dërgua, faleminderit ${name}`);
+    e.target.reset();
+    showPage("home");
 });
 </script>
 
 </body>
 </html>
+
